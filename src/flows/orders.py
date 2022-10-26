@@ -57,7 +57,7 @@ def orders_flow(user: dict, conn: sqlite3.Connection) -> None:
     items = cur.fetchall()
 
     for item in items:
-        print(f"{item['amount']}x {item['name']} - {item['price']} kr")
+        print(f"- {item['amount']}x {item['name']} @ {item['price']} kr")
     print(
         f"Total: {sum(map(lambda item: item['amount'] * item['price'], items))}")
     print("--------")
