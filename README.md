@@ -2,6 +2,10 @@
 
 Velkommen til pizza program. Speedrunnet på et par timer til et skoleprojekt.
 
+[![asciicast](https://asciinema.org/a/37Jsz8PZIKMEXlnPchqHpeVJL.svg)](https://asciinema.org/a/37Jsz8PZIKMEXlnPchqHpeVJL)
+
+[Preview](https://asciinema.org/a/37Jsz8PZIKMEXlnPchqHpeVJL)
+
 ## Kørsel
 
 ### Docker
