@@ -368,7 +368,7 @@ def modify_order_flow(user: dict, conn: sqlite3.Connection) -> None:
                 item['comment'] = comment
                 print("Comment updated!")
             case 3:  # Go back
-                return
+                return modify_order_flow(user, conn)
 
 
 def clear_order_flow(user: dict, conn: sqlite3.Connection) -> None:
