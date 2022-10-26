@@ -1,0 +1,81 @@
+{
+    "ingredients": [
+        {
+            "id": 1,
+            "name": "Tomato_sauce",
+            "in_stock": 50,
+            "is_topping": false
+        },
+        {
+            "id": 2,
+            "name": "Mozzarella",
+            "in_stock": 100,
+            "is_topping": false
+        },
+        {
+            "id": 3,
+            "name": "Pepperoni",
+            "in_stock": 61,
+            "is_topping": true
+        },
+        {
+            "id": 4,
+            "name": "Pineapple",
+            "in_stock": 0,
+            "is_topping": true
+        },
+        {
+            "id": 5,
+            "name": "Onions",
+            "in_stock": 10,
+            "is_topping": true
+        },
+        {
+            "id": 6,
+            "name": "Ham",
+            "in_stock": 40,
+            "is_topping": true
+        },
+        {
+            "id": 7,
+            "name": "Dressing",
+            "in_stock": 12,
+            "is_topping": true
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "name": "Margherita Pizza",
+            "price": 50,
+            "description": "Tomato sauce, mozzarella",
+            "ingredients": [
+                {"id": 1, "amount": 1},
+                {"id": 2, "amount": 3}
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Pepperoni Pizza",
+            "price": 60,
+            "description": "Tomato sauce, mozzarella, pepperoni",
+            "ingredients": [
+                {"id": 1, "amount": 1},
+                {"id": 2, "amount": 3},
+                {"id": 3, "amount": 4}
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Hawaiian Pizza",
+            "price": 70,
+            "description": "Tomato sauce, mozzarella, ham, pineapple (SALE!)",
+            "ingredients": [
+                {"id": 1, "amount": 1},
+                {"id": 2, "amount": 3},
+                {"id": 4, "amount": 5},
+                {"id": 6, "amount": 4}
+            ]
+        }
+    ]
+}

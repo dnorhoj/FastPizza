@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider                  = "prisma-erd-generator"
+  output                    = "../erd.png"
+  includeRelationFromFields = true
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../db.sqlite3"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  firstName String
+  lastName  String
+  email     String  @unique
+  password  String
+  isAdmin   Boolean @default(false)
+  orders    Order[]
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  status    Int
+  user      User        @relation(fields: [userId], references: [id])
+  userId    Int
+  orderItem OrderItem[]
+}
+
+model Ingredient {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  inStock   Int     @default(0)
+  name      String
+  isTopping Boolean @default(false)
+
+  orderToppings IngredientOrderItemTopping[]
+  products      ProductIngredient[]
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String              @unique
+  description String?
+  price       Float
+  ingredients ProductIngredient[]
+  orderItems  OrderItem[]
+}
+
+model ProductIngredient {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  amount       Int
+  product      Product    @relation(fields: [productId], references: [id])
+  productId    Int
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId Int
+
+  @@unique([productId, ingredientId])
+}
+
+model IngredientOrderItemTopping {
+  id Int @id @default(autoincrement())
+
+  amount       Int        @default(1)
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId Int
+  orderItem    OrderItem  @relation(fields: [orderItemId], references: [id])
+  orderItemId  Int
+
+  @@unique([ingredientId, orderItemId])
+}
+
+model OrderItem {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  comment   String?
+  amount    Int                          @default(1)
+  order     Order                        @relation(fields: [orderId], references: [id])
+  orderId   Int
+  product   Product                      @relation(fields: [productId], references: [id])
+  productId Int
+  toppings  IngredientOrderItemTopping[]
+}
